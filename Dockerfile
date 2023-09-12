@@ -2,7 +2,7 @@ FROM ubuntu:22.04
 LABEL MAINTAINER="wujidadi@gmail.com"
 
 ARG user=user
-ARG vim_tag=v9.0.1677
+ARG vim_tag=v9.0.1897
 ARG nano_great_version=7
 ARG nano_version=7.2
 
@@ -30,7 +30,7 @@ RUN echo '';\
     echo 'Installing common packages ...';\
     echo '================================';\
     echo '';\
-    apt-get install -y --no-install-recommends sudo expect bash-completion build-essential openssl libssl-dev net-tools iputils-ping nmap lsof telnet cron rsyslog zip unzip p7zip-full curl wget locales git zsh gosu ca-certificates less rename screen sntp tshark gpg-agent;\
+    apt-get install -y --no-install-recommends sudo expect bash-completion build-essential openssl libssl-dev net-tools iputils-ping nmap lsof telnet cron rsyslog zip unzip p7zip-full curl wget locales git zsh gosu ca-certificates less rename screen sntp tshark gpg gpg-agent;\
     echo '';\
     echo '================================';\
     echo 'Setting the locale ...';\
