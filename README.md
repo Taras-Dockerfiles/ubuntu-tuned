@@ -6,12 +6,15 @@ Tuned Ubuntu, a relative pure image.
 
 > For older dockerfiles earlier than version 2.8, see the old [Wujidadi Dockerfiles](https://github.com/Wujidadi/Dockerfiles) repository.
 
+### 2.10 (2023-10-02)
+
+* OS: **Ubuntu 22.04 LTS**
+* Main software versions:
+  * **Vim 9.0.1968**
+  * **GNU Nano 7.2**
+
 ### 2.9 (2023-09-12)
 
-* `docker buildx` commands: (`$D` is a custom alias of the log directory)
-  ```sh
-  docker buildx build --no-cache --progress=plain --push --platform linux/amd64,linux/arm64 --rm -t wujidadi/ubuntu-tuned:2.9 -t wujidadi/ubuntu-tuned:latest . 2>&1 | tee $D/docker-build-ut.log
-  ```
 * OS: **Ubuntu 22.04 LTS**
 * Main software versions:
   * **Vim 9.0.1897**
