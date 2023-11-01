@@ -6,6 +6,13 @@ Tuned Ubuntu, a relative pure image.
 
 > For older dockerfiles earlier than version 2.8, see the old [Wujidadi Dockerfiles](https://github.com/Wujidadi/Dockerfiles) repository.
 
+### 2.11 (2023-11-01)
+
+* OS: **Ubuntu 22.04 LTS**
+* Main software versions:
+  * **Vim 9.0.2081**
+  * **GNU Nano 7.2**
+
 ### 2.10 (2023-10-02)
 
 * OS: **Ubuntu 22.04 LTS**
