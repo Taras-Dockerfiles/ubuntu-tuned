@@ -6,10 +6,10 @@ docker buildx rm multiarch
 docker buildx create --name multiarch --use
 
 # Build the Docker image
-docker buildx build --no-cache --progress=plain --push --platform linux/amd64,linux/arm64 --rm -t wujidadi/ubuntu-tuned:2.11 -t wujidadi/ubuntu-tuned:latest . 2>&1 | tee $D/docker-build-ut.log
+docker buildx build --no-cache --progress=plain --push --platform linux/amd64,linux/arm64/v8 --rm -t wujidadi/ubuntu-tuned:2.12 -t wujidadi/ubuntu-tuned:latest . 2>&1 | tee $D/docker-build-ut-2.12.log
 
 # Create test container and delete it finally
-docker run -d -p 50000:80 -it --name Test wujidadi/ubuntu-tuned:2.11
+docker run -d -p 50000:80 -it --name Test wujidadi/ubuntu-tuned:2.12
 # docker exec -it Test zsh
 docker exec -it Test vim --version | grep 'Included patches'
 docker exec -it Test nano -V | grep 'GNU nano, version'
