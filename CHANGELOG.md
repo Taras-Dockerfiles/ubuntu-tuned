@@ -1,5 +1,12 @@
 # Change Log (since version 0.17)
 
+## 2.14 (2024-02-01)
+
+* OS: **Ubuntu 22.04 LTS**
+* Main software versions:
+  - **Vim 9.1.0067**
+  - **GNU Nano 7.2**
+
 ## 2.13 (2024-01-06)
 
 * OS: **Ubuntu 22.04 LTS**
