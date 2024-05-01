@@ -1,5 +1,20 @@
 # Change Log (since version 0.17)
 
+## 3.0 (2024-05-04)
+
+* OS: **Ubuntu 24.04 LTS**
+  - Great version number of the image jumps to **3** for upgrading from 22.04 LTS to **24.04 LTS**.
+* Main software versions:
+  - **Vim 9.1.0391**
+  - **GNU Nano 8.0**
+
+## 2.15 (2024-04-02)
+
+* OS: **Ubuntu 22.04 LTS**
+* Main software versions:
+  - **Vim 9.1.0252**
+  - **GNU Nano 7.2**
+
 ## 2.14 (2024-02-01)
 
 * OS: **Ubuntu 22.04 LTS**
