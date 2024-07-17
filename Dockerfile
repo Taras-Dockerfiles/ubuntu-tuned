@@ -2,9 +2,9 @@ FROM ubuntu:24.04
 LABEL MAINTAINER="wujidadi@gmail.com"
 
 ARG user=user
-ARG vim_tag=v9.1.0391
+ARG vim_tag=v9.1.0591
 ARG nano_great_version=8
-ARG nano_version=8.0
+ARG nano_version=8.1
 
 ENV DEBIAN_FRONTEND=noninteractive \
     LANG=en_US.UTF-8 \
