@@ -1,5 +1,12 @@
 # Change Log (since version 0.17)
 
+## 3.3 (2024-09-01)
+
+* OS: **Ubuntu 24.04 LTS**
+* Main software versions:
+  - **Vim 9.1.0707**
+  - **GNU Nano 8.1**
+
 ## 3.2 (2024-08-08)
 
 * OS: **Ubuntu 24.04 LTS**
