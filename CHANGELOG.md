@@ -1,5 +1,14 @@
 # Change Log (since version 0.17)
 
+## 3.5 (2024-11-09)
+
+* OS: **Ubuntu 24.04 LTS**
+* Main software versions:
+  - **Vim 9.1.0847**
+  - **GNU Nano 8.2**
+* User `user` has been removed, leaving only the `root` user to consolidate the RUN commands into a single layer, simplifying the overall structure.
+* Replaced all `;` connectors with `&&` to catch errors during the build process.
+
 ## 3.4 (2024-10-05)
 
 * OS: **Ubuntu 24.04 LTS**
