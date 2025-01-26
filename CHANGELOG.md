@@ -1,5 +1,12 @@
 # Change Log (since version 0.17)
 
+## 3.7 (2025-01-26)
+
+* OS: **Ubuntu 24.04 LTS (Noble Numbat)**
+* Main software versions:
+  - **Vim 9.1.1054**
+  - **GNU Nano 8.3**
+
 ## 3.6 (2025-01-02)
 
 * OS: **Ubuntu 24.04 LTS**
