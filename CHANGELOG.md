@@ -1,5 +1,13 @@
 # Change Log (since version 0.17)
 
+## 20250315 (2025-03-15)
+
+* Starting from this version, we use the build date as the version number.
+* OS: **Ubuntu 24.04.2 LTS (Noble Numbat)**
+* Main software versions:
+  - **Vim 9.1.1202**
+  - **GNU Nano 8.3**
+
 ## 3.8 (2025-02-06)
 
 * OS: **Ubuntu 24.04 LTS (Noble Numbat)**

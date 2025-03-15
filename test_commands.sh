@@ -2,14 +2,13 @@
 cd ~/Documents/Workspaces/Docker/ubuntu-tuned
 
 ## If the Docker buildx instance is unusable, recreate it
-docker buildx rm multiarch
-docker buildx create --name multiarch --use
+docker buildx rm multiarch && docker buildx create --name multiarch --use
 
 # Build the Docker image
-docker buildx build --no-cache --progress=plain --push --platform linux/amd64,linux/arm64/v8 --rm -t wujidadi/ubuntu-tuned:3.8 -t wujidadi/ubuntu-tuned:latest . 2>&1 | tee $D/docker-build-ut-3.8.log
+docker buildx build --no-cache --progress=plain --push --platform linux/amd64,linux/arm64/v8 --rm -t wujidadi/ubuntu-tuned:20250315 -t wujidadi/ubuntu-tuned:latest . 2>&1 | tee $D/docker-build-ut-20250315.log
 
 # Create testing container
-docker run -d -p 50000:80 -it --name Test wujidadi/ubuntu-tuned:3.8
+docker run -d -p 50000:80 -it --name Test wujidadi/ubuntu-tuned:20250315
 
 # Test the container outside itself by each command
 docker exec -it Test cat /etc/os-release | grep VERSION
