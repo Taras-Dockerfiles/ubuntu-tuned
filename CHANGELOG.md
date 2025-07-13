@@ -1,5 +1,12 @@
 # Change Log (since version 0.17)
 
+## 20250713 (2025-07-13)
+
+* OS: **Ubuntu 24.04.2 LTS (Noble Numbat, noble-20250619)**
+* Main software versions:
+  - **Vim v9.1.1538**
+  - **GNU Nano 8.5**
+
 ## 20250511 (2025-05-11)
 
 * OS: **Ubuntu 24.04.2 LTS (Noble Numbat, noble-20250415.1)**

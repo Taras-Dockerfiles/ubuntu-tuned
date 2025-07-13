@@ -1,9 +1,9 @@
-FROM ubuntu:noble-20250415.1
+FROM ubuntu:noble-20250619
 LABEL MAINTAINER="wujidadi@gmail.com"
 
-ARG vim_tag=v9.1.1381
+ARG vim_tag=v9.1.1538
 ARG nano_great_version=8
-ARG nano_version=8.4
+ARG nano_version=8.5
 
 ENV DEBIAN_FRONTEND=noninteractive \
     LANG=en_US.UTF-8 \
