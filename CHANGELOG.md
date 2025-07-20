@@ -1,5 +1,19 @@
 # Change Log (since version 0.17)
 
+## 20250720 (2025-07-20)
+
+* OS: **Ubuntu 24.04.2 LTS (Noble Numbat, noble-20250714)**
+* Main software versions:
+  - **Git v2.50.1**
+  - **Vim v9.1.1566**
+  - **GNU Nano 8.5**
+* Improve Docker Scout health score:
+  - Add non-root user
+  - Add SBOM and Provenance options to build command and extract it into independent `buildx` script
+  - Remove `gosu` and `software-properties-common`, compile `git` from source to avoid "Fixable critical or high vulnerabilities" compliance issues
+* Add independent `test` script for image testing
+* Extract shared arguments from `buildx` and `test` scripts into `.env` file as environment variables
+
 ## 20250713 (2025-07-13)
 
 * OS: **Ubuntu 24.04.2 LTS (Noble Numbat, noble-20250619)**

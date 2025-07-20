@@ -1,9 +1,14 @@
-FROM ubuntu:noble-20250619
+FROM ubuntu:noble-20250714
 LABEL MAINTAINER="wujidadi@gmail.com"
 
-ARG vim_tag=v9.1.1538
+ARG git_version=2.50.1
+ARG vim_version=9.1.1566
 ARG nano_great_version=8
 ARG nano_version=8.5
+
+ARG root_pswd
+ARG user_name=ubuntu
+ARG user_pswd
 
 ENV DEBIAN_FRONTEND=noninteractive \
     LANG=en_US.UTF-8 \
@@ -29,9 +34,10 @@ RUN echo '' && \
     echo 'Installing common packages ...' && \
     echo '================================' && \
     echo '' && \
-    apt-get install -y --no-install-recommends sudo expect bash-completion build-essential openssl libssl-dev net-tools \
-    iputils-ping nmap lsof telnet cron rsyslog zip unzip p7zip-full curl wget locales git zsh gosu apt-transport-https \
-    lsb-release ca-certificates less rename screen sntp tshark gpg gpg-agent gnupg2 software-properties-common && \
+    apt-get install -y --no-install-recommends sudo bash-completion build-essential openssl libssl-dev libpcre3 \
+    libpcre3-dev zlib1g-dev libcurl4-openssl-dev libexpat1-dev tcl gettext net-tools iputils-ping nmap lsof telnet \
+    cron rsyslog expect zip unzip p7zip-full curl wget locales zsh apt-transport-https lsb-release ca-certificates \
+    less rename tmux sntp tshark gpg gpg-agent gnupg2 && \
     echo '' && \
     echo '================================' && \
     echo 'Setting the locale ...' && \
@@ -43,13 +49,7 @@ RUN echo '' && \
     echo 'Setting root ...' && \
     echo '================================' && \
     echo '' && \
-    echo 'root:RootUser' | chpasswd && \
-    echo '' && \
-    echo '=============================================' && \
-    echo 'Installing apt software-properties-common ...' && \
-    echo '=============================================' && \
-    echo '' && \
-    apt-get install -y --no-install-recommends software-properties-common && \
+    echo "root:${root_pswd}" | chpasswd && \
     echo '' && \
     echo '==========================================' && \
     echo 'Installing ncurses and S-Lang packages ...' && \
@@ -58,11 +58,20 @@ RUN echo '' && \
     apt-get install -y --no-install-recommends libncursesw5-dev libslang2-dev && \
     echo '' && \
     echo '================================' && \
+    echo 'Installing newest Git ...' && \
+    echo '================================' && \
+    echo '' && \
+    curl -L https://github.com/git/git/archive/refs/tags/v${git_version}.tar.gz -o /git.tar.gz && \
+    tar xvf /git.tar.gz -C / && cd /git-${git_version} && \
+    make prefix=/usr all && make prefix=/usr install && \
+    cd / && rm -rf /git-${git_version} /git.tar.gz && \
+    echo '' && \
+    echo '================================' && \
     echo 'Installing newest Vim ...' && \
     echo '================================' && \
     echo '' && \
     cd / && \
-    git clone -b ${vim_tag} https://github.com/vim/vim.git vim && \
+    git clone -b v${vim_version} https://github.com/vim/vim.git vim && \
     cd vim/src && \
     make && make install && \
     cd / && rm -rf vim && \
@@ -97,6 +106,7 @@ RUN echo '' && \
     curl -L https://raw.github.com/Wujidadi/Ubuntu-RC/main/root.zshrc -o /root/.zshrc && \
     curl -L https://raw.github.com/Wujidadi/Ubuntu-RC/main/myzshtheme.zsh-theme -o /root/.oh-my-zsh/themes/myzshtheme.zsh-theme && \
     curl -L https://raw.github.com/Wujidadi/Ubuntu-RC/main/myrootzshtheme.zsh-theme -o /root/.oh-my-zsh/themes/myrootzshtheme.zsh-theme && \
+    # sed -i 's|^#\s*export PATH=\$HOME/bin:/usr/local/bin:\$PATH|export PATH=\$HOME/bin:/usr/local/bin:/usr/local/sbin:\$PATH|g' /root/.zshrc && \  # No need in Ubuntu based images
     echo '' && \
     echo '=====================================' && \
     echo 'Changing the default shell to Zsh ...' && \
@@ -112,7 +122,47 @@ RUN echo '' && \
     git config --global core.pager 'less --raw-control-chars' && \
     echo '' && \
     echo '================================' && \
+    echo 'Configure non-root user ...' && \
+    echo '================================' && \
+    echo '' && \
+    echo "${user_name}:${user_pswd}" | chpasswd && \
+    usermod -aG sudo ${user_name} && \
+    echo '%sudo ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/${user_name} && \
+    chmod 0440 /etc/sudoers.d/${user_name} && \
+    cp /root/.nanorc /home/${user_name}/.nanorc && \
+    chown -R ${user_name}:${user_name} /home/${user_name} && \
+    echo ''
+
+# Switch to non-root user
+USER ${user_name}
+RUN echo '=========================================' && \
+    echo 'Installing Oh My Zsh to non-root user ...' && \
+    echo '=========================================' && \
+    echo '' && \
+    echo Y | sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" && \
+    curl -L https://raw.github.com/Wujidadi/Ubuntu-RC/main/home.bashrc -o /home/${user_name}/.bashrc && \
+    curl -L https://raw.github.com/Wujidadi/Ubuntu-RC/main/home.vimrc -o /home/${user_name}/.vimrc && \
+    curl -L https://raw.github.com/Wujidadi/Ubuntu-RC/main/home.zshrc -o /home/${user_name}/.zshrc && \
+    sed -i "s|/home/user/.oh-my-zsh|/home/${user_name}/.oh-my-zsh|g" /home/${user_name}/.zshrc && \
+    curl -L https://raw.github.com/Wujidadi/Ubuntu-RC/main/myzshtheme.zsh-theme -o /home/${user_name}/.oh-my-zsh/themes/myzshtheme.zsh-theme && \
+    curl -L https://raw.github.com/Wujidadi/Ubuntu-RC/main/myrootzshtheme.zsh-theme -o /home/${user_name}/.oh-my-zsh/themes/myrootzshtheme.zsh-theme && \
+    echo '' && \
+    echo '======================================================' && \
+    echo 'Changing the default shell of non-root user to Zsh ...' && \
+    echo '======================================================' && \
+    echo '' && \
+    /bin/bash -c "touch /home/${user_name}/.oh-my-zsh/cache/{.zsh-update,grep-alias}" && \
+    echo '' && \
+    echo '========================================================================================' && \
+    echo "Non-root user: Setting Git's default pager to less for displaying unicode characters ..." && \
+    echo '========================================================================================' && \
+    echo '' && \
+    /bin/bash -c "git config --global core.pager 'less --raw-control-chars'" && \
+    echo '' && \
+    echo '================================' && \
     echo 'Image building finishes' && \
     echo '================================'
+
+WORKDIR /home/${user_name}
 
 CMD [ "/bin/zsh", "-l" ]
