@@ -1,10 +1,10 @@
-FROM ubuntu:noble-20250714
+FROM ubuntu:noble-20250716
 LABEL MAINTAINER="wujidadi@gmail.com"
 
-ARG git_version=2.50.1
-ARG vim_version=9.1.1566
+ARG git_version=2.51.0
+ARG vim_version=9.1.1713
 ARG nano_great_version=8
-ARG nano_version=8.5
+ARG nano_version=8.6
 
 ARG root_pswd
 ARG user_name=ubuntu

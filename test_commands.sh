@@ -2,7 +2,8 @@
 cd ~/Documents/Workspaces/Docker/ubuntu-tuned
 
 ## If the Docker buildx instance is unusable, recreate it
-docker buildx rm multiarch && docker buildx create --name multiarch --use
+docker buildx rm multiarch
+docker buildx create --name multiarch --use
 
 # Make sure the environment file exists
 if [ ! -f ./env ]; then
