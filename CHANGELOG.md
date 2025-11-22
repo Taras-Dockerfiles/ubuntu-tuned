@@ -1,5 +1,16 @@
 # Change Log (since version 0.17)
 
+## 20251122 (2025-11-22)
+
+* OS: **Ubuntu 24.04.3 LTS (Noble Numbat, noble-20251013)**
+* Main software versions:
+  - **Git v2.52.0**
+  - **Vim v9.1.1924**
+  - **GNU Nano 8.7**
+* Installed two Zsh plugins:
+  - **zsh-autosuggestions**
+  - **zsh-syntax-highlighting**
+
 ## 20250831 (2025-08-31)
 
 * OS: **Ubuntu 24.04.2 LTS (Noble Numbat, noble-20250716)**
